@@ -1,0 +1,20 @@
+{
+  "name": "lux-solution",
+  "version": "1.0.0",
+  "description": "This is the folder for the TypeScript kit. Please make sure to read the instructions as they are important regarding how you will write a bot and submit it to our servers.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "replay": "yarn run build && lux-ai-2021 dist/main.js dist/main.js"
+  },
+  "main": "main.ts",
+  "dependencies": {
+    "readline": "^1.3.0"
+  },
+  "devDependencies": {
+    "@lux-ai/2021-challenge": "^3.1.0",
+    "@types/node": "^16.10.1",
+    "@types/react": "^17.0.24",
+    "typescript": "^4.4.3"
+  }
+}
