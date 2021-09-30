@@ -1,14 +1,16 @@
+/* eslint-disable no-async-promise-executor */
+/* eslint-disable no-constant-condition */
 import readline from "readline";
-import {Player} from "./Player";
-import {GameMap} from "./GameMap";
-import {City} from "./City";
-import {Unit} from "./Unit";
-import {Parser} from "./Parser";
-import {Parsed} from "./Parsed";
-import {INPUT_CONSTANTS} from './io';
+import { Player } from "./Player";
+import { GameMap } from "./GameMap";
+import { City } from "./City";
+import { Unit } from "./Unit";
+import { Parser } from "./Parser";
+import { Parsed } from "./Parsed";
+import { INPUT_CONSTANTS } from "./io";
 
 // Create parser and use ',' as the delimiter between commands being sent by the `Match` and `MatchEngine`
-const parse = new Parser(' ');
+const parse = new Parser(" ");
 
 export interface GameState {
   id: number;
@@ -24,7 +26,6 @@ export class Agent {
   public getLine: () => Promise<Parsed>;
   public gameState: GameState;
   public _setup(): void {
-
     // Prepare to read input
     const rl = readline.createInterface({
       input: process.stdin,
@@ -40,14 +41,13 @@ export class Agent {
       });
     };
     // on each line, push line to buffer
-    rl.on('line', (line) => {
+    rl.on("line", (line) => {
       buffer.push(line);
       currentResolve();
       currentPromise = makePromise();
     });
     // The current promise for retrieving the next line
-    currentPromise = makePromise()
-
+    currentPromise = makePromise();
 
     // with await, we pause process until there is input
     this.getLine = async () => {
@@ -75,11 +75,10 @@ export class Agent {
    * User should edit this according to their `Design`
    */
   public async initialize() {
-
     // get agent ID
     const id = (await this.getLine()).nextInt();
     // get some other necessary initial input
-    let mapInfo = (await this.getLine());
+    let mapInfo = await this.getLine();
     let width = mapInfo.nextInt();
     let height = mapInfo.nextInt();
     const map = new GameMap(width, height);
@@ -114,9 +113,12 @@ export class Agent {
   public async retrieveUpdates() {
     this.resetPlayerStates();
     // TODO: this can be optimized. we only reset because some resources get removed
-    this.gameState.map = new GameMap(this.gameState.map.width, this.gameState.map.height);
+    this.gameState.map = new GameMap(
+      this.gameState.map.width,
+      this.gameState.map.height
+    );
     while (true) {
-      let update = (await this.getLine());
+      let update = await this.getLine();
       if (update.str === INPUT_CONSTANTS.DONE) {
         break;
       }
@@ -145,7 +147,19 @@ export class Agent {
           const wood = update.nextInt();
           const coal = update.nextInt();
           const uranium = update.nextInt();
-          this.gameState.players[team].units.push(new Unit(team, unittype, unitid, x, y, cooldown, wood, coal, uranium));
+          this.gameState.players[team].units.push(
+            new Unit(
+              team,
+              unittype,
+              unitid,
+              x,
+              y,
+              cooldown,
+              wood,
+              coal,
+              uranium
+            )
+          );
           break;
         }
         case INPUT_CONSTANTS.CITY: {
@@ -153,7 +167,10 @@ export class Agent {
           const cityid = update.nextStr();
           const fuel = update.nextFloat();
           const lightUpkeep = update.nextFloat();
-          this.gameState.players[team].cities.set(cityid, new City(team, cityid, fuel, lightUpkeep));
+          this.gameState.players[team].cities.set(
+            cityid,
+            new City(team, cityid, fuel, lightUpkeep)
+          );
           break;
         }
         case INPUT_CONSTANTS.CITY_TILES: {
@@ -183,10 +200,12 @@ export class Agent {
    * End a turn
    */
   public endTurn(): void {
-    console.log('D_FINISH');
+    console.log("D_FINISH");
   }
 
-  public async run(loop: (gameState: GameState) => Array<string>): Promise<void> {
+  public async run(
+    loop: (gameState: GameState) => Array<string>
+  ): Promise<void> {
     await this.initialize();
     while (true) {
       await this.update();
@@ -203,18 +222,18 @@ export class Agent {
 
 export const annotate = {
   circle: (x: number, y: number): string => {
-    return `dc ${x} ${y}`
+    return `dc ${x} ${y}`;
   },
   x: (x: number, y: number): string => {
-    return `dx ${x} ${y}`
+    return `dx ${x} ${y}`;
   },
   line: (x1: number, y1: number, x2: number, y2: number): string => {
-    return `dl ${x1} ${y1} ${x2} ${y2}`
+    return `dl ${x1} ${y1} ${x2} ${y2}`;
   },
   text: (x1: number, y1: number, message: string, fontsize: number = 16) => {
-    return `dt ${x1} ${y1} ${fontsize} '${message}'`
+    return `dt ${x1} ${y1} ${fontsize} '${message}'`;
   },
   sidetext: (message: string) => {
-    return `dst '${message}'`
-  }
-}
+    return `dst '${message}'`;
+  },
+};

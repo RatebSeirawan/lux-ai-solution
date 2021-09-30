@@ -1,5 +1,5 @@
 import GAME_CONSTANTS from "./game_constants";
-const {DIRECTIONS} = GAME_CONSTANTS;
+const { DIRECTIONS } = GAME_CONSTANTS;
 
 export class Position {
   public x: number;

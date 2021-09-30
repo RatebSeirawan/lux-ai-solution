@@ -1,5 +1,5 @@
 /** CityTile and Unit are both actionable and can return action strings to send to engine  */
-import {Position} from "./Position";
+import { Position } from "./Position";
 
 export class CityTile {
   public team: number;
@@ -7,7 +7,13 @@ export class CityTile {
   public pos: Position;
   public cooldown: number;
 
-  public constructor(teamid: number, cityid: string, x: number, y: number, cooldown: number) {
+  public constructor(
+    teamid: number,
+    cityid: string,
+    x: number,
+    y: number,
+    cooldown: number
+  ) {
     this.cityid = cityid;
     this.team = teamid;
     this.pos = new Position(x, y);

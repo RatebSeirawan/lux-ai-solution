@@ -8,7 +8,7 @@ export class Parsed {
     this.contents = str.split(d);
 
     // remove the last element if its empty string
-    if (this.contents[this.contents.length - 1] === '') {
+    if (this.contents[this.contents.length - 1] === "") {
       this.contents = this.contents.slice(0, this.contents.length - 1);
     }
     this.index = 0;
@@ -18,16 +18,18 @@ export class Parsed {
     if (this.index < this.contents.length) {
       return this.contents[this.index++];
     } else {
-      throw new Error("No more contents to consume from line")
+      throw new Error("No more contents to consume from line");
     }
   }
 
   // Returns the remainder of the line as an array of integers
   public nextIntArr(): Array<number> {
     if (this.index < this.contents.length) {
-      return this.contents.slice(this.index, this.contents.length).map((val) => parseInt(val, 10));
+      return this.contents
+        .slice(this.index, this.contents.length)
+        .map((val) => parseInt(val, 10));
     } else {
-      throw new Error("No more contents to consume from line")
+      throw new Error("No more contents to consume from line");
     }
   }
 
@@ -41,7 +43,7 @@ export class Parsed {
     if (this.index < this.contents.length) {
       return this.contents.slice(this.index++).map((val) => parseFloat(val));
     } else {
-      throw new Error("No more contents to consume from line")
+      throw new Error("No more contents to consume from line");
     }
   }
 
@@ -55,7 +57,7 @@ export class Parsed {
     if (this.index < this.contents.length) {
       return this.contents.slice(this.index++);
     } else {
-      throw new Error("No more contents to consume from line")
+      throw new Error("No more contents to consume from line");
     }
   }
 

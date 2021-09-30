@@ -1,6 +1,6 @@
 import GAME_CONSTANTS from "./game_constants";
-import {City} from "./City";
-import {Unit} from "./Unit";
+import { City } from "./City";
+import { Unit } from "./Unit";
 
 /**
  * holds all data related to a player
@@ -18,10 +18,16 @@ export class Player {
   }
 
   public researchedCoal(): boolean {
-    return this.researchPoints >= GAME_CONSTANTS.PARAMETERS.RESEARCH_REQUIREMENTS.COAL;
+    return (
+      this.researchPoints >=
+      GAME_CONSTANTS.PARAMETERS.RESEARCH_REQUIREMENTS.COAL
+    );
   }
 
   public researchedUranium(): boolean {
-    return this.researchPoints >= GAME_CONSTANTS.PARAMETERS.RESEARCH_REQUIREMENTS.URANIUM;
+    return (
+      this.researchPoints >=
+      GAME_CONSTANTS.PARAMETERS.RESEARCH_REQUIREMENTS.URANIUM
+    );
   }
 }

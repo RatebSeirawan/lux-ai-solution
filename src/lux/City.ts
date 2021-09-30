@@ -1,5 +1,5 @@
 // all data related to a city
-import {CityTile} from "./CityTile";
+import { CityTile } from "./CityTile";
 
 export class City {
   public cityid: string;
@@ -8,7 +8,12 @@ export class City {
   public citytiles = new Array<CityTile>();
   public lightUpkeep: number;
 
-  public constructor(teamid: number, cityid: string, fuel: number, lightUpkeep: number) {
+  public constructor(
+    teamid: number,
+    cityid: string,
+    fuel: number,
+    lightUpkeep: number
+  ) {
     this.cityid = cityid;
     this.team = teamid;
     this.fuel = fuel;

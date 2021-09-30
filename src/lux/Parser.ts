@@ -1,11 +1,11 @@
-import {Parsed} from "./Parsed";
+import { Parsed } from "./Parsed";
 
 /**
  * Parser class to help parse a input line of data
  */
 export class Parser {
   public delimiter: string;
-  public constructor(d = ',') {
+  public constructor(d = ",") {
     this.delimiter = d;
     return this.parse.bind(this);
   }
@@ -16,4 +16,3 @@ export class Parser {
     return new Parsed(str, this.delimiter);
   }
 }
-
