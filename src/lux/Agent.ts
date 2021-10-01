@@ -8,6 +8,7 @@ import { Unit } from "./Unit";
 import { Parser } from "./Parser";
 import { Parsed } from "./Parsed";
 import { INPUT_CONSTANTS } from "./io";
+import { ResourceType } from ".";
 
 // Create parser and use ',' as the delimiter between commands being sent by the `Match` and `MatchEngine`
 const parse = new Parser(" ");
@@ -130,7 +131,7 @@ export class Agent {
           break;
         }
         case INPUT_CONSTANTS.RESOURCES: {
-          const type = update.nextStr();
+          const type = update.nextStr() as ResourceType;
           const x = update.nextInt();
           const y = update.nextInt();
           const amt = update.nextInt();

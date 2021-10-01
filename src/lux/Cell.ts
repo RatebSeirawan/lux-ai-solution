@@ -1,8 +1,10 @@
 import { Position } from "./Position";
 import { CityTile } from "./CityTile";
 
+export type ResourceType = "wood" | "coal" | "uranium";
+
 export interface Resource {
-  type: string;
+  type: ResourceType;
   amount: number;
 }
 

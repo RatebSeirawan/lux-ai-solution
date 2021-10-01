@@ -1,4 +1,4 @@
-import { Cell } from "./Cell";
+import { Cell, ResourceType } from "./Cell";
 import { Position } from "./Position";
 
 export class GameMap {
@@ -28,7 +28,7 @@ export class GameMap {
   }
 
   public _setResource(
-    type: string,
+    type: ResourceType,
     x: number,
     y: number,
     amount: number
