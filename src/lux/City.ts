@@ -20,7 +20,7 @@ export class City {
     this.lightUpkeep = lightUpkeep;
   }
 
-  public addCityTile(x: number, y: number, cooldown: number): CityTile {
+  public _addCityTile(x: number, y: number, cooldown: number): CityTile {
     const ct = new CityTile(this.team, this.cityid, x, y, cooldown);
     this.citytiles.push(ct);
     return ct;

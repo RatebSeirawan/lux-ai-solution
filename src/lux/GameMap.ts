@@ -1,3 +1,5 @@
+import { bfs } from "../bfs";
+import { logger } from "../logger";
 import { Cell, ResourceType } from "./Cell";
 import { Position } from "./Position";
 
@@ -19,12 +21,37 @@ export class GameMap {
     }
   }
 
+  public shortestPath(from: Position, to: Position) {
+    const shortestPath = bfs(
+      this.map,
+      [from.x, from.y],
+      [to.x, to.y],
+      (c) => !c.taken && !c.citytile
+    );
+
+    if (!shortestPath || shortestPath.length <= 1) return null;
+    return shortestPath[1];
+  }
+
   public getCellByPos(pos: Position): Cell {
     return this.map[pos.y][pos.x];
   }
 
   public getCell(x: number, y: number): Cell {
     return this.map[y][x];
+  }
+
+  public isTaken(pos: Position): boolean {
+    return this.map[pos.y][pos.x].taken;
+  }
+
+  public setTaken(pos: Position): void {
+    this.map[pos.y][pos.x].taken = true;
+  }
+
+  public isEmpty(pos: Position) {
+    const tile = this.getCellByPos(pos);
+    return !tile.hasResource() && !tile.citytile;
   }
 
   public _setResource(

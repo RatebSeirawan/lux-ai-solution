@@ -1,3 +1,5 @@
 export * from "./getResouceTiles";
 export * from "./getClosestResources";
-export * from "./getAvailableWorkers";
+export * from "./getWorkers";
+export * from "./getClosestCityTiles";
+export * from "./getLowestFuelCity";

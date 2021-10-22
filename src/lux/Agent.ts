@@ -181,7 +181,7 @@ export class Agent {
           const y = update.nextInt();
           const cooldown = update.nextFloat();
           const city = this.gameState.players[team].cities.get(cityid);
-          const citytile = city.addCityTile(x, y, cooldown);
+          const citytile = city._addCityTile(x, y, cooldown);
           this.gameState.map.getCell(x, y).citytile = citytile;
           this.gameState.players[team].cityTileCount += 1;
           break;

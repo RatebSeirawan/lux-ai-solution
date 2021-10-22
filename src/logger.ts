@@ -1,11 +1,11 @@
 import winston from "winston";
-import { Cell, Position, Resource, Unit } from "./lux";
+import { Unit } from "./lux";
 
-export default class logger {
+export default class Logger {
   public turn: number;
   public container: winston.Container;
 
-  public constructor(turn?: number) {
+  public constructor(turn: number = -1) {
     this.turn = turn;
     this.container = new winston.Container();
 
@@ -19,12 +19,13 @@ export default class logger {
     });
   }
 
-  public unit(u: Unit) {
+  public unit(u: Unit, action: string) {
     const sid = this._sid("unit", u.id);
 
     this._check(sid, "units");
 
     this.container.get(sid).info({
+      action: action,
       unit: {
         team: u.team,
         cargo: u.cargo,
@@ -34,6 +35,10 @@ export default class logger {
       },
       turn: this.turn,
     });
+  }
+
+  public setTurn(turn: number) {
+    this.turn = turn;
   }
 
   public log(message: any) {
@@ -57,3 +62,7 @@ export default class logger {
     }
   }
 }
+
+const logger = new Logger();
+
+export { logger };

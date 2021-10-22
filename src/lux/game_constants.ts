@@ -13,6 +13,10 @@ export const CONSTANTS = {
     WEST: "w",
     EAST: "e",
     SOUTH: "s",
+    NORTH_EAST: "ne",
+    NORTH_WEST: "nw",
+    SOUTH_EAST: "se",
+    SOUTH_WEST: "sw",
     CENTER: "c",
   },
   PARAMETERS: {

@@ -6,7 +6,7 @@ export const getClosestResources = (
   type: ResourceType = "wood"
 ): Cell[] => {
   return cells
-    .filter((cell) => cell.resource.type === type)
+    .filter((cell) => cell.resource.type === type && !cell.taken)
     .sort((a, b) => {
       const distA = a.pos.distanceTo(pos);
       const distB = b.pos.distanceTo(pos);

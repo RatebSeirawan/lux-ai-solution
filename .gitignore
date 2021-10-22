@@ -1,4 +1,5 @@
 dist
+dist-dump
 replays
 errorlogs
 node_modules

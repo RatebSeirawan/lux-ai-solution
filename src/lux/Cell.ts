@@ -13,6 +13,7 @@ export class Cell {
   public resource: Resource = null;
   public citytile: CityTile = null;
   public road = 0;
+  public taken = false;
 
   public constructor(x: number, y: number) {
     this.pos = new Position(x, y);
